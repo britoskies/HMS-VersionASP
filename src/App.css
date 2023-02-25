@@ -1,0 +1,28 @@
+/* REMOVE INPUT NUMBER ARROWS*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#root {
+  height: 100%;
+}
+
+.layout {
+  height: 100%;
+}
+
+.logged-layout {
+  background-color: #e5e5e5;
+}
+
+.login-layout {
+  background-color: #1D3557;
+}

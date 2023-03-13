@@ -11,8 +11,8 @@ import UserAuth from '../../../models/userauth/UserAuth';
 type Props = {};
 
 function Header({ }: Props) {
-  const [user] = UserAuth.getAuthState()
-  const navigate = useNavigate()
+  const user: boolean = UserAuth.isAuth;
+  const navigate = useNavigate();
 
   const handleSignOut = () => {
     UserAuth.signOut()

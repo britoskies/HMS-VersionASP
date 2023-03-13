@@ -2,12 +2,12 @@
 import UserAuth from "../models/userauth/UserAuth"
 
 function routeGuard() {
-    const [user, loading] = UserAuth.getAuthState()
+    const user: boolean = UserAuth.isAuth
     // if(!loading) {
     //     console.log('ended loading', user)
     //     return user ? true : false
     // }
-    return [user, loading]
+    return user
 }
 
 export default routeGuard

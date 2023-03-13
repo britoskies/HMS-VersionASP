@@ -1,36 +1,32 @@
-// Firebase App
-import app from '../../services/firebase/firebase';
+// ASP
+import asp from "../../services/api/asp";
 
-// Firebase Classes
-import { FirebaseError } from 'firebase/app'
-
-// Auth Hooks
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth, signInWithEmailAndPassword, UserCredential } from 'firebase/auth';
-
+// Schema
+import { iUserAuth } from "./UserAuthSchema";
 
 const UserAuth = {
-    _auth: getAuth(app),
+  isAuth: false,
 
-    async authUser(email: string, password: string) {
-        const result: UserCredential | FirebaseError | any = await signInWithEmailAndPassword(this._auth, email, password)
-            .then((res: UserCredential) => res)
-            .catch((err: FirebaseError) => err);
+  async authUser(email: string, password: string) {
+    const result: iUserAuth = await asp.signInWithEmailAndPassword(
+      email,
+      password
+    );
 
-        if (result.user) {
-            return true
-        } else {
-            return false
-        }
-    },
-
-    getAuthState() {
-        return useAuthState(this._auth);
-    },
-
-    signOut() {
-        this._auth.signOut()
+    if (!result.data.info.hasError) {
+      console.log(result);
+      console.log("bien!!!");
+      this.isAuth = true;
+      return true;
+    } else {
+      console.log(result);
+      console.log("mal!!!");
+      this.isAuth = false;
+      return false;
     }
-}
+  },
 
-export default UserAuth
+  signOut() {},
+};
+
+export default UserAuth;
